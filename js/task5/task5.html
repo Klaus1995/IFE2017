@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>task5</title>
+	<style type="text/css">
+		li{
+			display: inline-block;
+			float: left;
+			width: 20px;
+			background: red;
+			color: white;
+			margin-left: 5px;
+			text-align: center;
+			font-size: 5px;
+		}
+	</style>
+</head>
+<body>
+<input type="text" name="" id="numInput">
+<button id="leftIn">左侧入</button>
+<button id="rightIn">右侧入</button>
+<button id="leftOut">左侧出</button>
+<button id="rightOut">右侧出</button>
+<button id="sort">排序</button>
+<button id="bubbleSort">冒泡排序</button>
+<button id="random">添加随机数</button>
+<ul id="numList">
+	<li>10</li>
+	<li>3</li>
+	<li>7</li>
+	<li>12</li>
+	<li>11</li>
+	<li>30</li>
+</ul>
+
+
+
+<script type="text/javascript">
+//得到原来的数字序列 返回一个数组
+function getArray() {
+	var list = new Array();
+	var numList = document.getElementById('numList').getElementsByTagName('li');
+	for(var i =0;i<numList.length;i++){
+		list[i]=numList[i].innerHTML;
+	};
+	return list;
+}
+
+
+//右侧入
+function rightIn(){
+	var list = getArray();
+	var number = document.getElementById('numInput').value;
+	var numList = document.getElementById('numList').getElementsByTagName('li');
+	if(numList.length<60){
+		if(number<=100&&number>=10){
+			list.push(number);
+			return list;
+		}
+		else{
+			alert('必须输入10-100之内的数字');
+			return list;
+		}
+	}
+	else{
+		alert('超过60个数据了！');
+		return list;		
+	}
+}
+//左侧入
+function leftIn(){
+	var list = getArray();
+	var number = document.getElementById('numInput').value;
+	var numList = document.getElementById('numList').getElementsByTagName('li');
+	if(numList.length<60){
+		if(number<=100&&number>=10){
+			list.unshift(number);
+			return list;
+		}
+		else{
+			alert('必须输入10-100之内的数字');
+			return list;
+		}
+	}
+	else{
+		alert('超过60个数据了！');
+		return list;		
+	}	
+}
+
+//右侧出
+function rightOut(){
+	var list = getArray();
+	if(list.length==0){
+		alert('已经没有数字了！');
+		return list;
+	}
+	else{
+		var rightOutNum=list.pop();
+		alert(rightOutNum);
+		return list;
+	}	
+}
+//左侧出
+function leftOut(){
+	var list = getArray();
+	if(list.length==0){
+		alert('已经没有数字了！');
+		return list;
+	}
+	else{
+		var leftOutNum=list.shift();
+		alert(leftOutNum);
+		return list;
+	}	
+}
+
+
+//输出
+function display(list){
+	var numList = document.getElementById('numList');
+	numList.innerHTML = "";
+	for(var i=0;i<list.length;i++){
+		numList.innerHTML+=("<li>"+list[i]+"</li>");
+	}
+}
+
+//每个数字，点击直接消失，并且高度等于相对应数字
+function delNum(){
+	var numList = document.getElementById('numList').getElementsByTagName('li');
+	for(var i=0;i<numList.length;i++){
+		numList[i].style.height=(Number(numList[i].innerHTML)+30) +'px';
+		numList[i].onclick=function(){
+			document.getElementById('numList').removeChild(this);
+		}
+	}
+}
+
+//排序
+function arraySort(){
+	var list = getArray();
+	// list.sort(compare);  //系统自带排序方法可以实现排序
+	list = bubbleSort(list);   //冒泡算法排序也可以实现排序
+	display(list);
+	delNum();
+}
+
+//排序算法,js自带的sort方法
+function compare(value1,value2){
+	return value1-value2;
+}
+
+//冒泡排序算法
+function bubbleSort(list){
+	var i = list.length , j ;
+	var exchangeValue;
+	while(i>0){
+		for(j=0;j<i-1;j++){
+			if(Number(list[j])>Number(list[j+1])){
+				exchangeValue=list[j];
+				list[j]=list[j+1];
+				list[j+1]=exchangeValue;
+			}
+		}
+		i--;
+	}
+	return list;
+}
+
+//基于冒牌算法的数据可视化过程
+function bubbleSortView(){
+	var list =getArray();
+	function bubbleSort(list){
+		var i = list.length , j ;
+		var exchangeValue;
+			function repeat(){
+				for(j=0;j<i-1;j++){							
+					if(Number(list[j])>Number(list[j+1])){
+						list =getArray();
+						exchangeValue=list[j];
+						list[j]=list[j+1];
+						list[j+1]=exchangeValue;	
+						display(list);
+						delNum();
+					}
+				}
+				i--;
+				if(i==0){
+					window.clearInterval(t);
+				}
+			}
+		var t = setInterval(repeat,500);
+		return list;
+	}
+	list = bubbleSort(list);
+}
+
+//添加随机数
+function addRandomNum(){
+	var list = getArray();
+	var randomNum = Math.floor(Math.random()*91+10);
+	list.push(randomNum);
+	display(list);
+	delNum();
+}
+
+//绑定按钮
+window.onload=function(){
+	var rightInBtn = document.getElementById('rightIn');
+	var leftInBtn = document.getElementById('leftIn');
+	var rightOutBtn = document.getElementById('rightOut');
+	var leftOutBtn = document.getElementById('leftOut');
+	var sortBtn = document.getElementById('sort');
+	var bubbleSortBtn = document.getElementById('bubbleSort'); 
+	var randomBtn = document.getElementById('random'); 
+	delNum();
+	rightInBtn.onclick=function(){
+		display(rightIn());
+		delNum();
+
+	}
+	leftInBtn.onclick=function(){
+		display(leftIn());
+		delNum();
+	}
+	rightOutBtn.onclick=function(){
+		display(rightOut());
+		delNum();
+	}
+	leftOutBtn.onclick=function(){
+		display(leftOut());
+		delNum();
+	}
+	sortBtn.onclick = function(){
+		arraySort();
+	}
+	bubbleSortBtn.onclick = function(){
+		bubbleSortView();
+	}
+	randomBtn.onclick = function(){
+		addRandomNum();
+	}	
+};
+</script>
+</body>
+</html>

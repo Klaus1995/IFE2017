@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task4</title>
+	<style type="text/css">
+		li{
+			display: inline-block;
+			height: 20px;
+			background: red;
+			color: white;
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body>
+<input type="text" name="" id="numInput">
+<button id="leftIn">左侧入</button>
+<button id="rightIn">右侧入</button>
+<button id="leftOut">左侧出</button>
+<button id="rightOut">右侧出</button>
+<ul id="numList">
+	<li>23</li>
+	<li>4342</li>
+	<li>34</li>
+	<li>65</li>
+</ul>
+
+
+
+<script type="text/javascript">
+//得到原来的数字序列 返回一个数组
+function getArray() {
+	var list = new Array();
+	var numList = document.getElementById('numList').getElementsByTagName('li');
+	for(var i =0;i<numList.length;i++){
+		list[i]=numList[i].innerHTML;
+	};
+	return list;
+}
+
+
+//右侧入
+function rightIn(){
+	var list = getArray();
+	var number = document.getElementById('numInput').value;
+	list.push(number);
+	return list;
+}
+//左侧入
+function leftIn(){
+	var list = getArray();
+	var number = document.getElementById('numInput').value;
+	list.unshift(number);
+	return list;
+}
+
+//右侧出
+function rightOut(){
+	var list = getArray();
+	var rightOutNum=list.pop();
+	alert(rightOutNum);
+	return list;	
+}
+//左侧出
+function leftOut(){
+	var list = getArray();
+	var leftOutNum=list.shift();
+	alert(leftOutNum);
+	return list;	
+}
+
+
+//输出
+function display(list){
+	var numList = document.getElementById('numList');
+	numList.innerHTML = "";
+	for(var i=0;i<list.length;i++){
+		numList.innerHTML+=("<li>"+list[i]+"</li>");
+	}
+}
+
+//每个数字，点击直接消失
+function delNum(){
+	var numList = document.getElementById('numList').getElementsByTagName('li');
+	for(var i=0;i<numList.length;i++){
+		numList[i].onclick=function(){
+			document.getElementById('numList').removeChild(this);
+		}
+	}
+}
+
+//绑定按钮
+window.onload=function(){
+	var rightInBtn = document.getElementById('rightIn');
+	var leftInBtn = document.getElementById('leftIn');
+	var rightOutBtn = document.getElementById('rightOut');
+	var leftOutBtn = document.getElementById('leftOut');
+	delNum();
+	rightInBtn.onclick=function(){
+		display(rightIn());
+		delNum();
+
+	}
+	leftInBtn.onclick=function(){
+		display(leftIn());
+		delNum();
+	}
+	rightOutBtn.onclick=function(){
+		display(rightOut());
+		delNum();
+	}
+	leftOutBtn.onclick=function(){
+		display(leftOut());
+		delNum();
+	}
+};
+</script>
+</body>
+</html>
