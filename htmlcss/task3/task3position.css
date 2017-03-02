@@ -1,0 +1,63 @@
+/*YUI css reset*/
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
+
+img{
+	height: 80px;
+	width: 80px;
+}
+
+.main{
+	position: relative;
+	box-sizing: border-box;
+	margin: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 1px solid #999;
+	background: #eee;
+	min-height: 480px;
+}
+
+
+
+.left{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	box-sizing: border-box;
+	padding: 20px;
+	width: 200px;
+	height: 120px;
+	border: 1px solid #999;
+	background: #ffffff;
+}
+.left img{
+	float: left;
+	margin-right: 20px;
+}
+
+
+
+.middle{
+	box-sizing: border-box;
+	padding: 20px;
+	border: 1px solid #999;
+	background: #ffffff;
+	margin: 0 160px 0 240px;
+}
+
+
+
+.right{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	box-sizing: border-box;
+	padding: 20px;
+	padding-top: 0;
+	width: 120px;
+	border: 1px solid #999;
+	background: #ffffff;
+}
+.right img{
+	margin-top: 20px;
+}
