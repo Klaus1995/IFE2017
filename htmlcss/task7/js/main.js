@@ -26,7 +26,19 @@ $(function(){
 		}else{
 			high = window.pageYOffset;
 		};
+		if(high>0&&high<$("#activity").offset().top){
+			$("nav li").eq(0).addClass("active").siblings("li").removeClass("active");
+		}else if (high>$("#activity").offset().top&&high<$("#project").offset().top) {
+			$("nav li").eq(1).addClass("active").siblings("li").removeClass("active");
+		}else if (high>$("#project").offset().top&&high<$("#community").offset().top) {
+			$("nav li").eq(2).addClass("active").siblings("li").removeClass("active");
+		}else if (high>$("#community").offset().top&&high<3900) {
+			$("nav li").eq(3).addClass("active").siblings("li").removeClass("active");
+		}else if (high>3900) {
+			$("nav li").eq(4).addClass("active").siblings("li").removeClass("active");
+		}
 	}	
+	$(window).scroll(changeNav);
 
 
 	//main1动画加载
@@ -121,18 +133,3 @@ $(function(){
 
 
 
-function throttle(fn, delay, atleast) {
-	    var timeout = null,
-		startTime = new Date();
-	    return function() {
-		var curTime = new Date();
-		clearTimeout(timeout);
-		if(curTime - startTime >= atleast) {
-		    fn();
-		    startTime = curTime;
-		}else {
-		    timeout = setTimeout(fn, delay);
-		}
-	    }
-	}
-	
