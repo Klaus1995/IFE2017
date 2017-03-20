@@ -134,7 +134,7 @@ div.main1{
 	min-width: 1280px;
 	padding-top: 224px;
 	padding-left: 9%;
-	background: url(img/img1.png) no-repeat;
+	background: url(img/img1.jpg) no-repeat;
 	background-size: cover;
 }
 div.main1>p.main1_caption1{
@@ -244,7 +244,7 @@ div.main4{
 	width: 100%;
 	height: 360px;
 	padding-top: 50px;
-	background: url(img/img2.png) no-repeat;
+	background: url(img/img2.jpg) no-repeat;
 	background-size: cover;
 }
 div.main4>p.main4_caption1{
@@ -544,7 +544,7 @@ div.main7>div.left{
 div.main7>div.right{
 	position: relative;
 	width: 34%;
-	background: url(img/img3.png);
+	background: url(img/img3.jpg);
 	background-size: cover;
 }
 div.main7>div.right>div.triangle{
